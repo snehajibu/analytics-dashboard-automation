@@ -34,7 +34,7 @@ class LoginPage:
 
     # Actions
     def enter_username(self, username):
-        self.logger.info(f"Enterung username {username}")
+        self.logger.info(f"Entering username {username}")
         username_field = self.wait.until(
             EC.visibility_of_element_located(
                 self.username_input
