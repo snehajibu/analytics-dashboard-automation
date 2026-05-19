@@ -1,7 +1,8 @@
 from pages.login_page import LoginPage
 from utils.screenshot_utils import take_screenshot
+import pytest
 
-
+@pytest.mark.regression
 def test_invalid_login(driver):
 
     driver.get(

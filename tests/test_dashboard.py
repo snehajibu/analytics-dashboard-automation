@@ -1,9 +1,9 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from pages.login_page import LoginPage
+import pytest
 
-
+@pytest.mark.smoke
 def test_login(driver):
 
     driver.get(
