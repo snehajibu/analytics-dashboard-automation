@@ -1,4 +1,5 @@
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from pages.login_page import LoginPage
 import pytest
@@ -11,7 +12,7 @@ def test_login(driver):
     login_page = LoginPage(driver)
 
     login_page.login("Admin", "admin123")
-    self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[text()='PIM']")))
+    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//span[normalize-space()='PIM']")))
 
     wait = WebDriverWait(driver, 10)
 
