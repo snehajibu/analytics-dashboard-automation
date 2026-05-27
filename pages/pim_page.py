@@ -24,7 +24,7 @@ class PimPage:
 
         pim = self.wait.until(EC.visibility_of_element_located(self.pim_menu))
         pim.click()
-        self.wait.until(EC.visibility_of_element_located(self.employee_name_input))
+        self.wait.until(EC.url_contains("/pim"))
 
     def search_employee(self, employee_name):
         self.logger.info(f"Searching employee: {employee_name}")
