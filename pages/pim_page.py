@@ -13,7 +13,7 @@ class PimPage:
     # Locators
 
     pim_menu = (By.XPATH, "//span[normalize-space()='PIM']")
-    employee_name_input = (By.XPATH, "(//input[contains(@placeholder,'Type for hints')])[1]")
+    employee_name_input = (By.XPATH, "//input[@placeholder='Type for hints...' and not(@disabled)]")
     search_button = (By.CSS_SELECTOR, "button[type='submit']")
     employee_table = (By.CLASS_NAME, "oxd-table-body")
    
@@ -29,13 +29,10 @@ class PimPage:
 
     def search_employee(self, employee_name):
         self.logger.info(f"Searching employee: {employee_name}")
-
-        employee_input = self.wait.until(EC.presence_of_element_located(self.employee_name_input))
+        employee_input = self.wait.until(EC.element_to_be_clickable(self.employee_name_input))
         self.driver.execute_script("arguments[0].scrollIntoView();", employee_input)
-        employee_input.clear()
         employee_input.send_keys(employee_name)
         search_btn = self.wait.until(EC.element_to_be_clickable(self.search_button))
-
         search_btn.click()
 
     def is_employee_table_displayed(self):
