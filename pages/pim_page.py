@@ -30,11 +30,11 @@ class PimPage:
     def search_employee(self, employee_name):
         self.logger.info(f"Searching employee: {employee_name}")
 
-        employee_input = self.wait.until(EC.visibility_of_element_located(self.employee_name_input))
+        employee_input = self.wait.until(EC.presence_of_element_located(self.employee_name_input))
+        self.driver.execute_script("arguments[0].scrollIntoView();,employee_input")
         employee_input.clear()
         employee_input.send_keys(employee_name)
-
-        search_btn = self.driver.find_element(*self.search_button)
+        search_btn = self.wait.until(EC.element_to_be_clickable(self.search_button))
 
         search_btn.click()
 
