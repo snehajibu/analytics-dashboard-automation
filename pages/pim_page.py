@@ -7,7 +7,7 @@ from utils.logger import get_logger
 class PimPage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 15)
         self.logger = get_logger()
 
     # Locators
@@ -23,7 +23,7 @@ class PimPage:
         self.logger.info("Navigate to PIM module")
 
         pim = self.wait.until(EC.visibility_of_element_located(self.pim_menu))
-        pim.click()
+        self.driver.execute_script("arguments[0].click();",pim)
         self.wait.until(EC.url_contains("/pim"))
 
     def search_employee(self, employee_name):
