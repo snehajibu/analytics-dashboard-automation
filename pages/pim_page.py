@@ -13,8 +13,8 @@ class PimPage:
     # Locators
 
     pim_menu = (By.XPATH, "//span[normalize-space()='PIM']")
-    employee_name_input = (By.XPATH, "(///label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//input")
-    search_button = (By.CSS_SELECTOR,"button[type='submit']")
+    employee_name_input = (By.XPATH, "//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//input")
+    search_button = (By.CSS_SELECTOR, "button[type='submit']")
     employee_table = (By.CLASS_NAME, "oxd-table-body")
    
     #Actions
