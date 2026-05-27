@@ -13,7 +13,7 @@ class PimPage:
     # Locators
 
     pim_menu = (By.XPATH, "//span[normalize-space()='PIM']")
-    employee_name_input = (By.XPATH, "//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//input")
+    employee_name_input = (By.XPATH, "//input[@placeholder='Type for hints...']")
     search_button = (By.CSS_SELECTOR, "button[type='submit']")
     employee_table = (By.CLASS_NAME, "oxd-table-body")
    
@@ -29,7 +29,7 @@ class PimPage:
     def search_employee(self, employee_name):
         self.logger.info(f"Searching employee: {employee_name}")
 
-        employee_input = self.wait.until(EC.visibility_of_element_located(self.employee_name_input))
+        employee_input = self.wait.until(EC.element_to_be_clickable(self.employee_name_input))
 
         employee_input.send_keys(employee_name)
 
