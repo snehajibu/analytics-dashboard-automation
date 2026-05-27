@@ -29,7 +29,8 @@ class LoginPage:
 
     def click_login(self):
         self.logger.info("Clicking login button")
-        login_btn = self.driver.find_element(*self.login_button)
+        login_btn = self.wait.until(EC.element_to_be_clickable(self.login_button))
+        self.driver.execute_script("arguments[0].click();",login_btn)
         login_btn.click()
 
     def get_error_message(self):
@@ -41,3 +42,4 @@ class LoginPage:
         self.enter_username(username)
         self.enter_password(password)
         self.click_login()
+        self.wait.until(EC.url_contains("/dashboard"))
