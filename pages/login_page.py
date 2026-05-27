@@ -28,10 +28,10 @@ class LoginPage:
         password_field.send_keys(password)
 
     def click_login(self):
+
         self.logger.info("Clicking login button")
-        login_btn = self.wait.until(EC.element_to_be_clickable(self.login_button))
-        self.driver.execute_script("arguments[0].click();",login_btn)
-        login_btn.click()
+        self.wait.until(EC.element_to_be_clickable(self.login_button))
+        self.driver.find_element(*self.login_button).click()
 
     def get_error_message(self):
         error = self.wait.until(EC.visibility_of_element_located(self.error_message))
