@@ -1,5 +1,5 @@
 import pytest
-
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -10,19 +10,13 @@ from selenium.webdriver.chrome.options import Options
 def driver():
 
     chrome_options = Options()
-
-    chrome_options.add_argument("--headless=new")
-
+    if os.getenv("CI"):
+        chrome_options.add_argument("headless=new")
+    chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--no-sandbox")
-
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Chrome(
-        service=Service(
-            ChromeDriverManager().install()
-        ),
-        options=chrome_options
-    )
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 
     driver.maximize_window()
 
